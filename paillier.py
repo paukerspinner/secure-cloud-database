@@ -1,10 +1,6 @@
 import primes
 import random
 import modulo
-import math
-import time
-
-import env
 
 
 class PublicKey:
@@ -37,7 +33,9 @@ def generateNewKeys(size):
     print(q)
     pub_key = PublicKey()
     pub_key.generate(p, q)
+    pub_key.show()
     pri_key = PrivateKey(p, q)
+    pri_key.show()
     return [pub_key, pri_key]
 
 def encrypt(plain, pub_key: PublicKey):
@@ -57,25 +55,8 @@ def decrypt(cipher, pub_key: PublicKey, pri_key: PrivateKey):
 def e_add(cipher_1, cipher_2, pub_key: PublicKey):
     return cipher_1 * cipher_2 % pub_key.n_sq
 
+def e_mul_const(cipher, constant, pub_key: PublicKey):
+    return pow(cipher, constant, pub_key.n_sq)
+
 def getBitOfPos(num, pos):
     return (num >> pos) & 1
-
-
-
-# t0 = time.perf_counter()
-# pub_key, pri_key = generateNewKeys(512)
-# print("Time of key generation: ", time.perf_counter() - t0)
-# pub_key.show()
-# pri_key.show()
-# print("Key was generated!")
-# for i in range(10):
-#     t0 = time.perf_counter()
-
-#     m = random.randint(0, pub_key.n)    
-#     c = encrypt(m, pub_key)
-#     res_m = decrypt(c, pub_key, pri_key)
-#     if (m != res_m):
-#         print("error")
-#     print(c)
-
-#     print(time.perf_counter() - t0)

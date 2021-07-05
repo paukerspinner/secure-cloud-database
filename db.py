@@ -1,5 +1,6 @@
 import pymysql
 from config import DB_INFO
+import datetime
 
 class DB:
     def __init__(self, table_name):
@@ -20,15 +21,7 @@ class DB:
         record = self.cursor.fetchone()
         return record
 
-    def update(self, record):
-        pass
+    def update(self, record_id, col, value):
+        self.cursor.execute("update %s set %s = '%s' where id = %d" % (self.table_name, col, value, record_id))
+        self.db.commit()
 
-# id = input('id: ')
-# fn = input('fn: ')
-# ln = input('ln: ')
-# people_table = DB('people')
-# people_table.create({
-#     'id': id,
-#     'firstname': fn,
-#     'lastname': ln
-# })

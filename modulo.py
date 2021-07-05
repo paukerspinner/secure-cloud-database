@@ -1,6 +1,7 @@
 import random
 
 def invmod(num, mod):
+    ''' Calculate the  modular multiplicative inverse of num modulo mod '''
     if mod == 1:
         raise ValueError('Modulo can not be 1.')
 
@@ -18,3 +19,5 @@ def invmod(num, mod):
         return s0
     else:
         raise ValueError('%d has no inverse mod %d' % (num, mod))
+
+        

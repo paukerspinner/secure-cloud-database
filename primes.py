@@ -2,6 +2,7 @@ import random, math
 import time
 
 def isPropbablyPrime(n, k=128):
+    ''' Check if a number n is prime or not using Miller-Rabin primality test '''
     k = int(math.log2(n))
     # find s and m such that n - 1 = 2^s * m, m is odd
     m = n - 1
